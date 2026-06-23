@@ -162,13 +162,13 @@
         /* ---------- map a unit cloud to current canvas pixels ---------- */
         function scaleFor() {
           const base = Math.min(W, H * 1.15);
-          if (W <= 560) return base * 0.58;
-          if (W <= 900) return base * 0.72;
+          if (W <= 560) return base * 0.55;
+          if (W <= 900) return base * 0.70;
           return base * 0.92;
         }
         function originFor() {
-          if (W <= 560) return [W * 0.62, H * 0.58];
-          if (W <= 900) return [W * 0.66, H * 0.48];
+          if (W <= 560) return [W * 0.58, H * 0.72];
+          if (W <= 900) return [W * 0.64, H * 0.58];
           return [W * 0.72, H * 0.5];
         }
 
