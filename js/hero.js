@@ -161,15 +161,15 @@
 
         /* ---------- map a unit cloud to current canvas pixels ---------- */
         function scaleFor() {
-          // fit the cloud into the hero, biased a touch toward the right on wide screens
           const base = Math.min(W, H * 1.15);
-          return base * (W > 900 ? 0.92 : 0.86);
+          if (W <= 560) return base * 0.58;
+          if (W <= 900) return base * 0.72;
+          return base * 0.92;
         }
         function originFor() {
-          // desktop: right-of-centre; mobile: nudged right and lower so it clears the header
-          const ox = W > 900 ? W * 0.72 : W * 0.66;
-          const oy = W > 900 ? H * 0.5 : H * 0.39;
-          return [ox, oy];
+          if (W <= 560) return [W * 0.62, H * 0.58];
+          if (W <= 900) return [W * 0.66, H * 0.48];
+          return [W * 0.72, H * 0.5];
         }
 
         function targetXY(p, cloud) {
