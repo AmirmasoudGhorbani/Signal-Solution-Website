@@ -28,7 +28,7 @@
         const N = 11000; // particle count
         const HOLD = 4600; // ms holding a shape
         const MORPH = 2600; // ms morphing between shapes (longer = gentler)
-        const INTRO = 2200; // ms first assembly from dispersed cloud
+        const INTRO = 4200; // ms first assembly from dispersed cloud
         const REPEL_R = 130; // cursor influence radius
         const REPEL_F = 26; // cursor push strength
 
@@ -181,7 +181,7 @@
           particles = new Array(N);
           const cloud = clouds[0];
           const [ox, oy] = originFor();
-          const disperse = Math.max(W, H) * 0.6;
+          const disperse = Math.max(W, H) * 0.8;
           for (let p = 0; p < N; p++) {
             const [tx, ty] = targetXY(p, cloud);
             // start dispersed in a soft cloud around the origin for a gentle assembly
