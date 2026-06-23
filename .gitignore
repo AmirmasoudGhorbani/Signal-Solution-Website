@@ -9,3 +9,7 @@ node_modules/
 # Local scratch
 _check/
 uploads/
+WEB-PROJECT-GUIDELINES.md
+uploads/
+.thumbnail
+.claude/
