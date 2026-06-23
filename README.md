@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="TV-Signal-Solutions-Brand/logo-full.png" alt="TV Signal Solutions" width="280" />
+  <img src="assets/brand-mark.png" alt="TV Signal Solutions" width="120" />
 </p>
 
 <h1 align="center">TV Signal Solutions</h1>
