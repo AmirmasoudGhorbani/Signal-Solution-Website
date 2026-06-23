@@ -31,7 +31,8 @@
       "Bash(rm \"Logo Showcase.html\")",
       "Bash(rm -rf .claude/)",
       "Bash(rm -rf uploads/)",
-      "Bash(rm .thumbnail)"
+      "Bash(rm .thumbnail)",
+      "Bash(python3)"
     ]
   }
 }
