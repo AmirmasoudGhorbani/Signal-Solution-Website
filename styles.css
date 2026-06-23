@@ -2593,7 +2593,15 @@ section[id] {
   .step .connector {
     display: none;
   }
-  /* simplify the hero overlay on mobile: keep just the rating line, drop the scroll cue */
+  .hero::before {
+    background: linear-gradient(
+      180deg,
+      var(--bg) 0%,
+      rgba(4, 7, 15, 0.85) 40%,
+      rgba(4, 7, 15, 0.45) 70%,
+      transparent 100%
+    );
+  }
   .scroll-cue {
     display: none;
   }
