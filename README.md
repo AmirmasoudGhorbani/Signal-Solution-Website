@@ -83,11 +83,14 @@ Auto-rotating testimonial cards displaying genuine Google reviews with a rating 
 
 ```
 TV-Signal-Solutions/
-├── index.html                  # Production page (external CSS + inline JS)
+├── index.html                  # Production page (links external CSS + inline JS)
 ├── index.src.html              # Source template with injection placeholders
 ├── styles.css                  # Design system and all component styles
 ├── assets/
 │   ├── brand-mark.png          # Navigation and footer logo
+│   ├── coverage.png            # Auckland coverage map image
+│   ├── og-image.png            # Social share preview card
+│   ├── favicon.svg             # Browser tab icon
 │   └── work/                   # Recent installation photography
 │       ├── antenna.jpg
 │       ├── cctv.jpg
@@ -95,24 +98,24 @@ TV-Signal-Solutions/
 │       ├── diagnosis.jpg
 │       ├── starlink.jpg
 │       └── wall.jpg
-├── js/
-│   ├── hero.js                 # Particle-morph hero animation
-│   ├── background.js           # Animated signal background layer
-│   ├── coverage.js             # Coverage map radar and signal overlay
-│   ├── carousel.jsx            # 3D liquid-glass service carousel (React)
-│   ├── work.js                 # Recent work photo carousel
-│   ├── reviews.js              # Rotating Google reviews
-│   ├── chat.js                 # AI chat assistant with keyword fallback
-│   ├── leads.js                # Web3Forms contact form and lead delivery
-│   ├── main.js                 # Navigation, scroll reveals, counters
-│   ├── image-slot.js           # Drag-and-drop image placeholder component
-│   ├── assets-data.js          # Base64 asset data for hero particle sampling
-│   ├── assets.js               # Asset loader and image management
-│   └── tweaks-panel.jsx        # Dev-only visual tweaks overlay (React)
+├── hero.js                     # Particle-morph hero animation
+├── background.js               # Animated signal background layer
+├── coverage.js                 # Coverage map radar and signal overlay
+├── carousel.jsx                # 3D liquid-glass service carousel (React)
+├── work.js                     # Recent work photo carousel
+├── reviews.js                  # Rotating Google reviews
+├── chat.js                     # AI chat assistant with fallback
+├── leads.js                    # Contact form and lead delivery logic
+├── main.js                     # Navigation, scroll reveals, counters
+├── image-slot.js               # Drag-and-drop image placeholder component
+├── assets-data.js              # Base64 asset data for hero particle sampling
+├── server/
+│   ├── server.js               # Express contact form API
+│   ├── package.json            # Server dependencies
+│   └── .env.example            # Environment variable template
+├── TV-Signal-Solutions-Brand/  # Full brand pack (logos, icons, social image)
 ├── .github/workflows/
 │   └── deploy.yml              # GitHub Pages deployment pipeline
-├── .gitignore
-├── .nojekyll                   # Bypasses Jekyll processing on GitHub Pages
 └── LICENSE
 ```
 
