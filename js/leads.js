@@ -5,7 +5,7 @@
    ============================================================ */
       (function () {
         window.TVS_CONTACT = {
-          email: "amirmasodgh@icloud.com",
+          email: "tvsignalsolutions.co.nz@gmail.com",
           phone: "0220746441",
           w3fKey: "6b287001-081b-410b-8a83-0603d8c6cc7b",
         };
