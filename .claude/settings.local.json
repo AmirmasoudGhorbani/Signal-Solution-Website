@@ -32,7 +32,13 @@
       "Bash(rm -rf .claude/)",
       "Bash(rm -rf uploads/)",
       "Bash(rm .thumbnail)",
-      "Bash(python3)"
+      "Bash(python3)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(git stash *)",
+      "Bash(git revert *)",
+      "Bash(git checkout *)",
+      "Bash(sips *)",
+      "Bash(git fetch *)"
     ]
   }
 }

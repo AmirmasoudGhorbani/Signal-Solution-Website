@@ -37,45 +37,53 @@ The project prioritises zero-build-step simplicity: the entire front end ships a
 ## Features
 
 ### Interactive Particle-Morph Hero
+
 A full-viewport HTML5 Canvas particle field composed of 11,000 individually animated particles. The system samples reference images (satellite dish, satellite, Auckland coverage map) and morphs between their point clouds on a timed cycle. Particles respond to cursor proximity with a physics-based repulsion model, creating an organic, reactive experience. Gracefully degrades to a CSS crossfade on devices that block pixel-reading.
 
 ### Animated Signal Background
+
 A living atmospheric layer rendered on a secondary canvas behind the content sections. Includes a connectivity mesh of drifting nodes with dynamic link lines, transmitter nodes emitting expanding broadcast rings, data pulses flowing along links, oscilloscope-style radio-wave traces, and wireframe satellite and rocket illustrations drifting through the scene.
 
 ### 3D Liquid-Glass Service Carousel
+
 A rotating cylinder of service cards built with React 18 and driven by `requestAnimationFrame` at 60fps. Features true liquid-glass aesthetics with refractive backdrop-filter blur, specular rim-lighting, travelling highlight animations, and volumetric depth via stacked card layers. Supports mouse/touch drag interaction with inertia damping and perspective-correct transforms using CSS `preserve-3d`.
 
 ### Animated Auckland Coverage Map
+
 A canvas overlay on the service area map rendering a live radar sweep, expanding signal rings broadcasting from the Auckland hub, and pulsing signal beams. Suburb hotspots highlight on hover to reinforce local coverage.
 
 ### Recent Work Carousel
+
 A horizontal photo gallery of completed installations with scroll-snap navigation, touch/swipe support, dot indicators, and arrow controls. Hovering triggers a subtle parallax zoom on images.
 
 ### AI Chat Assistant
+
 An integrated live chat widget powered by an optional AI backend. Handles common service enquiries with context-aware responses. Falls back to a keyword-matching engine when no AI host is available, ensuring the chat always functions. Includes a lead-capture form for callback requests.
 
 ### Contact and Lead Capture
+
 A fully validated quote request form with dual delivery: submissions are routed via FormSubmit for zero-backend email delivery, with an automatic `mailto:` fallback. The chat widget includes its own lead-capture flow for callback requests.
 
 ### Review Showcase
+
 Auto-rotating testimonial cards displaying genuine Google reviews with a rating summary panel, star visualisation, and smooth crossfade transitions between testimonials.
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Markup** | HTML5, semantic sections, Open Graph and Twitter Card meta |
-| **Styling** | CSS3 custom properties design system, CSS Grid, Flexbox, `backdrop-filter`, `clamp()`, CSS animations and transitions |
-| **Fonts** | Space Grotesk, Manrope, Space Mono (Google Fonts) |
-| **Animation** | HTML5 Canvas 2D API, `requestAnimationFrame`, particle physics, easing functions |
-| **UI Components** | React 18 (CDN, no build step), vanilla JS IIFEs |
-| **Chat** | Custom AI chat client with keyword fallback engine |
-| **Forms** | FormSubmit API with `mailto:` fallback |
-| **Backend** | Node.js, Express 4, Nodemailer, express-rate-limit, CORS |
-| **Deployment** | GitHub Actions CI/CD pipeline to GitHub Pages |
-| **Brand Assets** | Custom SVG/PNG logo system, favicon, social share image |
+| Layer             | Technology                                                                                                            |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Markup**        | HTML5, semantic sections, Open Graph and Twitter Card meta                                                            |
+| **Styling**       | CSS3 custom properties design system, CSS Grid, Flexbox, `backdrop-filter`, `clamp()`, CSS animations and transitions |
+| **Fonts**         | Space Grotesk, Manrope, Space Mono (Google Fonts)                                                                     |
+| **Animation**     | HTML5 Canvas 2D API, `requestAnimationFrame`, particle physics, easing functions                                      |
+| **UI Components** | React 18 (CDN, no build step), vanilla JS IIFEs                                                                       |
+| **Chat**          | Custom AI chat client with keyword fallback engine                                                                    |
+| **Forms**         | FormSubmit API with `mailto:` fallback                                                                                |
+| **Backend**       | Node.js, Express 4, Nodemailer, express-rate-limit, CORS                                                              |
+| **Deployment**    | GitHub Actions CI/CD pipeline to GitHub Pages                                                                         |
+| **Brand Assets**  | Custom SVG/PNG logo system, favicon, social share image                                                               |
 
 ---
 
@@ -123,6 +131,7 @@ TV-Signal-Solutions/
 The site is fully static and deploys with zero build configuration.
 
 **GitHub Pages** (configured via the included CI/CD pipeline):
+
 1. Push to the `main` branch.
 2. Navigate to **Settings > Pages** and set the source to **GitHub Actions**.
 3. The site deploys automatically on every push.
@@ -148,3 +157,4 @@ The visual identity is built on a cohesive CSS custom properties design system:
 Copyright &copy; 2026 TV Signal Solutions. All rights reserved. See [LICENSE](./LICENSE) for details.
 
 Web and app development by [Amir](https://amirghorbani.dev).
+did

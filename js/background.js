@@ -123,68 +123,82 @@
         function size() {
           stop();
           DPR = Math.min(window.devicePixelRatio || 1, 2);
-          W = window.innerWidth;
-          H = window.innerHeight;
+          const newW = window.innerWidth;
+          const newH = window.innerHeight;
+          // Mobile browsers resize the viewport height (not width) when the
+          // address bar/toolbar collapses during scroll. Treat that as a
+          // plain canvas reflow rather than a reason to re-roll every
+          // drifting object — otherwise the rockets/satellite teleport to a
+          // new random spot on every scroll instead of continuing their path.
+          const rebuild =
+            nodes.length === 0 || Math.round(newW) !== Math.round(W);
+          W = newW;
+          H = newH;
           canvas.width = W * DPR;
           canvas.height = H * DPR;
           ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-          const count = Math.max(10, Math.min(28, Math.round((W * H) / 64000)));
-          nodes = Array.from({ length: count }, () => ({
-            x: Math.random() * W,
-            y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.16,
-            vy: (Math.random() - 0.5) * 0.16,
-            r: Math.random() * 1.5 + 0.6,
-            tw: Math.random() * Math.PI * 2,
-          }));
-          // transmitter nodes that broadcast radio rings
-          txi = [];
-          const txCount = Math.max(1, Math.round(count / 22));
-          for (let i = 0; i < txCount; i++)
-            txi.push((Math.random() * count) | 0);
+          if (rebuild) {
+            const count = Math.max(
+              10,
+              Math.min(28, Math.round((W * H) / 64000))
+            );
+            nodes = Array.from({ length: count }, () => ({
+              x: Math.random() * W,
+              y: Math.random() * H,
+              vx: (Math.random() - 0.5) * 0.16,
+              vy: (Math.random() - 0.5) * 0.16,
+              r: Math.random() * 1.5 + 0.6,
+              tw: Math.random() * Math.PI * 2,
+            }));
+            // transmitter nodes that broadcast radio rings
+            txi = [];
+            const txCount = Math.max(1, Math.round(count / 22));
+            for (let i = 0; i < txCount; i++)
+              txi.push((Math.random() * count) | 0);
 
-          // radio-wave traces
-          waves = [
-            { y: H * 0.34, amp: 16, len: 240, sp: 0.018, ph: 0, op: 0.1 },
-            { y: H * 0.72, amp: 22, len: 320, sp: 0.012, ph: 2, op: 0.08 },
-          ];
+            // radio-wave traces
+            waves = [
+              { y: H * 0.34, amp: 16, len: 240, sp: 0.018, ph: 0, op: 0.1 },
+              { y: H * 0.72, amp: 22, len: 320, sp: 0.012, ph: 2, op: 0.08 },
+            ];
 
-          // floating satellites + rockets
-          const big = Math.min(W, H) > 620;
-          const kinds = big
-            ? ["sat", "rocket", "sat", "rocket"]
-            : ["sat", "rocket"];
-          floaters = kinds.map((type) => {
-            if (type === "rocket") {
-              const heading = Math.random() * Math.PI * 2;
-              const speed = 0.1 + Math.random() * 0.1;
+            // floating satellites + rockets
+            const big = Math.min(W, H) > 620;
+            const kinds = big
+              ? ["sat", "rocket", "sat", "rocket"]
+              : ["sat", "rocket"];
+            floaters = kinds.map((type) => {
+              if (type === "rocket") {
+                const heading = Math.random() * Math.PI * 2;
+                const speed = 0.1 + Math.random() * 0.1;
+                return {
+                  type,
+                  x: Math.random() * W,
+                  y: Math.random() * H,
+                  vx: Math.cos(heading) * speed,
+                  vy: Math.sin(heading) * speed,
+                  scale: 0.55 + Math.random() * 0.4,
+                  bob: Math.random() * Math.PI * 2,
+                  wob: Math.random() * Math.PI * 2,
+                };
+              }
               return {
                 type,
                 x: Math.random() * W,
                 y: Math.random() * H,
-                vx: Math.cos(heading) * speed,
-                vy: Math.sin(heading) * speed,
-                scale: 0.55 + Math.random() * 0.4,
+                vx: (Math.random() - 0.5) * 0.07,
+                vy: (Math.random() - 0.5) * 0.07,
+                rot: Math.random() * Math.PI * 2,
+                vr: (Math.random() - 0.5) * 0.0007,
+                scale: 0.6 + Math.random() * 0.5,
                 bob: Math.random() * Math.PI * 2,
-                wob: Math.random() * Math.PI * 2,
               };
-            }
-            return {
-              type,
-              x: Math.random() * W,
-              y: Math.random() * H,
-              vx: (Math.random() - 0.5) * 0.07,
-              vy: (Math.random() - 0.5) * 0.07,
-              rot: Math.random() * Math.PI * 2,
-              vr: (Math.random() - 0.5) * 0.0007,
-              scale: 0.6 + Math.random() * 0.5,
-              bob: Math.random() * Math.PI * 2,
-            };
-          });
+            });
 
-          rings.length = 0;
-          pulses.length = 0;
+            rings.length = 0;
+            pulses.length = 0;
+          }
           start();
         }
 

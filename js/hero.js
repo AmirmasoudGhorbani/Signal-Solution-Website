@@ -251,7 +251,12 @@
           canvas.width = Math.round(W * DPR);
           canvas.height = Math.round(H * DPR);
           ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-          if (ready) refitTargets(phase); // re-fit current shape
+          // Don't snap mid-flight: a resize while the intro/morph is still
+          // animating (e.g. a mobile toolbar collapsing during scroll) would
+          // jump every particle straight to its target and cut the animation
+          // short. Only re-fit instantly once settled; the next natural
+          // phase change re-syncs everything else.
+          if (ready && !intro && !morphing) refitTargets(phase);
         }
 
         /* ---------- animation ---------- */
