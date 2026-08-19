@@ -268,6 +268,7 @@
           const tilt = useRef({ x: 0, y: 0 }); // current (damped)
           const tiltTo = useRef({ x: 0, y: 0 }); // target from cursor
           const drag = useRef({ on: false, startX: 0, startProg: 0 });
+          const hidden = useRef([]); // per-card: already fully transparent, skip its transform this frame
           const N = SERVICES.length;
 
           useEffect(() => {
@@ -305,6 +306,22 @@
                 const el = cardRefs.current[i];
                 if (!el) continue;
                 const off = circOff(i, p, N);
+                const aOff = Math.abs(off);
+                // layout()'s own opacity curve hits exactly 0 at aOff >= 3 --
+                // recomputing and writing a fresh 3D transform for a card
+                // that's already fully invisible is wasted compositing work
+                // every single frame, on every device. Write the hidden
+                // state once when a card crosses into this zone, then skip
+                // it entirely until it's back in view.
+                if (aOff >= 3.05) {
+                  if (!hidden.current[i]) {
+                    el.style.opacity = "0";
+                    el.style.pointerEvents = "none";
+                    hidden.current[i] = true;
+                  }
+                  continue;
+                }
+                hidden.current[i] = false;
                 const st = layout(off, tx, ty);
                 el.style.transform = st.transform;
                 el.style.opacity = st.opacity;

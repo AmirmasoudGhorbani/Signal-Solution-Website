@@ -805,6 +805,12 @@ section[id] {
   margin: -196px 0 0 -150px;
   transform-style: preserve-3d;
   will-change: transform, opacity;
+  /* Stabilises compositing for the rotating, translateZ'd stack below --
+     without this, WebKit/Blink mobile GPUs can flicker or briefly show the
+     wrong face while a preserve-3d parent is mid-rotation, especially
+     combined with the border-radius + overflow: hidden on .svc-face.front. */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* ===== TRUE LIQUID GLASS (recreated) =====================================
@@ -816,6 +822,8 @@ section[id] {
   inset: 0;
   border-radius: 27px;
   transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 /* thin glassy edges give the pane believable depth without bulk */
 .svc-face.edge {
@@ -1050,6 +1058,15 @@ section[id] {
     width: 264px;
     height: 372px;
     margin: -186px 0 0 -132px;
+  }
+  /* backdrop-filter is one of the most GPU-expensive properties there is,
+     and this stage keeps several rotating, translateZ'd cards continuously
+     animating (autoplay never fully stops) -- a lighter blur here is the
+     single biggest lever for cutting per-frame compositing cost on
+     lower-end phone GPUs, which is where the rotation reads as glitchy. */
+  .svc-face.front {
+    -webkit-backdrop-filter: blur(3px) saturate(1.6) brightness(1.1);
+    backdrop-filter: blur(3px) saturate(1.6) brightness(1.1);
   }
 }
 
