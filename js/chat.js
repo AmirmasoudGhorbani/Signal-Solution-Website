@@ -1,7 +1,10 @@
 /* ============================================================
    Signal Assistant — live chat
-   Uses window.claude.complete to answer questions about TV Signal
-   Solutions. Falls back to keyword replies if the API is absent.
+   Answers questions about TV Signal Solutions via a keyword-matching
+   engine (fallbackReply below) — this is what runs on every real visit.
+   window.claude.complete is checked first as an optional hook, but that
+   API only exists inside Claude Artifacts, not on normal web hosting, so
+   it's always absent here and the keyword engine handles every reply.
    ============================================================ */
       (function () {
         const fab = document.getElementById("chat-fab");

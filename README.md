@@ -19,8 +19,6 @@
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" alt="JavaScript" />
   <img src="https://img.shields.io/badge/React_18-61DAFB?logo=react&logoColor=000" alt="React 18" />
   <img src="https://img.shields.io/badge/Canvas_API-FF6F00?logo=html5&logoColor=white" alt="Canvas API" />
-  <img src="https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white" alt="Node.js" />
-  <img src="https://img.shields.io/badge/Express-000000?logo=express&logoColor=white" alt="Express" />
   <img src="https://img.shields.io/badge/GitHub_Pages-222?logo=githubpages&logoColor=white" alt="GitHub Pages" />
 </p>
 
@@ -56,13 +54,13 @@ A canvas overlay on the service area map rendering a live radar sweep, expanding
 
 A horizontal photo gallery of completed installations with scroll-snap navigation, touch/swipe support, dot indicators, and arrow controls. Hovering triggers a subtle parallax zoom on images.
 
-### AI Chat Assistant
+### Chat Assistant
 
-An integrated live chat widget powered by an optional AI backend. Handles common service enquiries with context-aware responses. Falls back to a keyword-matching engine when no AI host is available, ensuring the chat always functions. Includes a lead-capture form for callback requests.
+An integrated live chat widget that answers common service enquiries using a keyword-matching engine — always active, no backend or API key required. It also checks for `window.claude.complete`, an API that only exists inside Claude Artifacts; on normal hosting (like this site's GitHub Pages deployment) that check always comes back empty, so every reply comes from the keyword engine. Includes a lead-capture form for callback requests.
 
 ### Contact and Lead Capture
 
-A fully validated quote request form with dual delivery: submissions are routed via FormSubmit for zero-backend email delivery, with an automatic `mailto:` fallback. The chat widget includes its own lead-capture flow for callback requests.
+A fully validated quote request form with dual delivery: submissions are routed via Web3Forms for zero-backend email delivery, with an automatic `mailto:` fallback. The chat widget includes its own lead-capture flow for callback requests.
 
 ### Review Showcase
 
@@ -78,10 +76,9 @@ Auto-rotating testimonial cards displaying genuine Google reviews with a rating 
 | **Styling**       | CSS3 custom properties design system, CSS Grid, Flexbox, `backdrop-filter`, `clamp()`, CSS animations and transitions |
 | **Fonts**         | Space Grotesk, Manrope, Space Mono (Google Fonts)                                                                     |
 | **Animation**     | HTML5 Canvas 2D API, `requestAnimationFrame`, particle physics, easing functions                                      |
-| **UI Components** | React 18 (CDN, no build step), vanilla JS IIFEs                                                                       |
-| **Chat**          | Custom AI chat client with keyword fallback engine                                                                    |
-| **Forms**         | FormSubmit API with `mailto:` fallback                                                                                |
-| **Backend**       | Node.js, Express 4, Nodemailer, express-rate-limit, CORS                                                              |
+| **UI Components** | React 18 production build (CDN, no build step), vanilla JS IIFEs                                                      |
+| **Chat**          | Custom chat client, keyword-matching engine (optional Claude Artifacts hook, unused on normal hosting)                |
+| **Forms**         | Web3Forms API with `mailto:` fallback                                                                                 |
 | **Deployment**    | GitHub Actions CI/CD pipeline to GitHub Pages                                                                         |
 | **Brand Assets**  | Custom SVG/PNG logo system, favicon, social share image                                                               |
 
@@ -91,7 +88,7 @@ Auto-rotating testimonial cards displaying genuine Google reviews with a rating 
 
 ```
 TV-Signal-Solutions/
-├── index.html                  # Production page (external CSS + inline JS)
+├── index.html                  # Production page (external CSS + external JS)
 ├── index.src.html              # Source template with injection placeholders
 ├── styles.css                  # Design system and all component styles
 ├── assets/
@@ -107,10 +104,10 @@ TV-Signal-Solutions/
 │   ├── hero.js                 # Particle-morph hero animation
 │   ├── background.js           # Animated signal background layer
 │   ├── coverage.js             # Coverage map radar and signal overlay
-│   ├── carousel.jsx            # 3D liquid-glass service carousel (React)
+│   ├── carousel.js             # 3D liquid-glass service carousel (React, no JSX)
 │   ├── work.js                 # Recent work photo carousel
 │   ├── reviews.js              # Rotating Google reviews
-│   ├── chat.js                 # AI chat assistant with keyword fallback
+│   ├── chat.js                 # Chat assistant, keyword-matching engine
 │   ├── leads.js                # Web3Forms contact form and lead delivery
 │   ├── main.js                 # Navigation, scroll reveals, counters
 │   ├── image-slot.js           # Drag-and-drop image placeholder component
