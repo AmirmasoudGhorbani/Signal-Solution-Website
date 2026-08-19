@@ -468,6 +468,16 @@ section[id] {
   width: 100%;
   height: 100%;
   z-index: 1;
+  /* Without these, holding a finger still on the canvas (rather than
+     swiping) is exactly the gesture iOS/Android use to trigger their own
+     long-press UI -- the magnifier/"Look Up" popup on iOS, text-selection
+     handles on Android -- which takes over the touch and freezes the
+     particle interaction from the visitor's side until it's dismissed.
+     touch-action: pan-y still allows normal vertical page scroll. */
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .hero-glow {
   position: absolute;

@@ -502,6 +502,18 @@
           mouse.active = false;
           mouse.x = mouse.y = -9999;
         });
+        // touchstart matters on its own, not just as a lead-in to
+        // touchmove: a finger held still generates little or no touchmove
+        // at all, so without this the repulsion effect never registers
+        // for a genuine hold -- only for an active swipe.
+        canvas.addEventListener(
+          "touchstart",
+          (e) => {
+            if (e.touches[0])
+              onMove(e.touches[0].clientX, e.touches[0].clientY);
+          },
+          { passive: true }
+        );
         canvas.addEventListener(
           "touchmove",
           (e) => {
