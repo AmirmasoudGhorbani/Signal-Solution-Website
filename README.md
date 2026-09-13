@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://amirmasoudghorbani.github.io/Signal-Solution-Website/"><strong>View Live Site</strong></a>
+  <a href="https://www.tvsignalsolutions.co.nz/"><strong>View Live Site</strong></a>
 </p>
 
 <p align="center">
